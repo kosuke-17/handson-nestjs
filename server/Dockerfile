@@ -12,5 +12,3 @@ COPY ./server/prisma ./prisma
 RUN npx prisma generate
 
 COPY . .
-
-# CMD ["npm", "run", "start"]

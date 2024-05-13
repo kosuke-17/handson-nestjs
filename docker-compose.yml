@@ -20,7 +20,7 @@ services:
       dockerfile: ./server/Dockerfile
     ports:
       - 3031:3031
-    command: ['npm', 'run', 'start']
+    command: ['npm', 'run', 'start:dev']
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres?schema=public
     restart: always
