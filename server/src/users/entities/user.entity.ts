@@ -1,19 +1,19 @@
-import { User } from '@prisma/client';
-import { ApiProperty } from '@nestjs/swagger';
+import { User } from '@prisma/client'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class UserEntity {
   @ApiProperty({ type: String })
-  id: User['id'];
+  id: User['id']
 
   @ApiProperty({ type: Date })
-  createdAt: User['createdAt'];
+  createdAt: User['createdAt']
 
   @ApiProperty({ type: Date })
-  updatedAt: User['updatedAt'];
+  updatedAt: User['updatedAt']
 
   @ApiProperty({ type: String })
-  firstName: User['firstName'];
+  firstName: User['firstName']
 
   @ApiProperty({ type: String })
-  lastName: User['lastName'];
+  lastName: User['lastName']
 }

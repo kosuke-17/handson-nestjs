@@ -1,8 +1,249 @@
 {
   "openapi": "3.0.0",
-  "paths": {},
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "operationId": "AppController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "operationId": "UsersController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "operationId": "UsersController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/users/me": {
+      "get": {
+        "operationId": "UsersController_findMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "UsersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "put": {
+        "operationId": "UsersController_logout",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSecretDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user-informations": {
+      "post": {
+        "operationId": "UserInformationsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserInformationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user-informations/{id}": {
+      "get": {
+        "operationId": "UserInformationsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "UserInformationsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserInformationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "UserInformationsController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/portfolios": {
+      "post": {
+        "operationId": "PortfoliosController_upsert",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertPortfolioDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "operationId": "PortfoliosController_findAllByLoginUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/portfolios/{id}": {
+      "delete": {
+        "operationId": "PortfoliosController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
   "info": {
-    "title": "API仕様書",
+    "title": "portfolio_app 仕様書",
     "description": "",
     "version": "1.0.0",
     "contact": {}
@@ -10,6 +251,115 @@
   "tags": [],
   "servers": [],
   "components": {
-    "schemas": {}
+    "schemas": {
+      "LoginDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateUserSecretDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "GENDER": {
+        "type": "string",
+        "enum": [
+          "MALE",
+          "FEMALE"
+        ]
+      },
+      "CreateUserInformationDto": {
+        "type": "object",
+        "properties": {
+          "stuffId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GENDER"
+          },
+          "nearestStation": {
+            "type": "string"
+          },
+          "startWorkDate": {
+            "type": "string"
+          },
+          "seExpAmount": {
+            "type": "number"
+          },
+          "pgExpAmount": {
+            "type": "number"
+          },
+          "itExpAmount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "stuffId",
+          "age",
+          "gender",
+          "nearestStation",
+          "startWorkDate",
+          "seExpAmount",
+          "pgExpAmount",
+          "itExpAmount"
+        ]
+      },
+      "UpdateUserInformationDto": {
+        "type": "object",
+        "properties": {
+          "stuffId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GENDER"
+          },
+          "nearestStation": {
+            "type": "string"
+          },
+          "startWorkDate": {
+            "type": "string"
+          },
+          "seExpAmount": {
+            "type": "number"
+          },
+          "pgExpAmount": {
+            "type": "number"
+          },
+          "itExpAmount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "stuffId",
+          "age",
+          "gender",
+          "nearestStation",
+          "startWorkDate",
+          "seExpAmount",
+          "pgExpAmount",
+          "itExpAmount"
+        ]
+      },
+      "UpsertPortfolioDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
   }
 }
